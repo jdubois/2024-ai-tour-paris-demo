@@ -1,33 +1,28 @@
 package com.example.demo;
 
-import com.example.demo.model.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-public class WeatherControllerTest {
+import org.junit.jupiter.api.Test;
 
-    @MockBean
-    private WeatherController weatherController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
 
-    private List<Country> countries;
+@WebMvcTest(WeatherController.class)
+class WebMockTest {
 
-    @BeforeEach
-    public void setUp() {
-        countries = Arrays.asList(
-                new Country("Country1", Arrays.asList(new City("City1"), new City("City2"))),
-                new Country("Country2", Arrays.asList(new City("City3"), new City("City4")))
-        );
+    @Autowired
+    private MockMvc mockMvc;
 
-        when(weatherController.index()).thenReturn(countries);
+    @Test
+    void indexShouldReturnParis() throws Exception {
+        this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Paris")));
     }
-    
 }
