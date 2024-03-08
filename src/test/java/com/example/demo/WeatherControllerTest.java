@@ -29,7 +29,7 @@ public class WeatherControllerTest {
         );
 
         when(weatherController.index()).thenReturn(countries);
-        when(weatherController.getCities("Country1")).thenReturn(Arrays.asList("City1", "City2"));
+        when(weatherController.citiesPerCountry("Country1")).thenReturn(Arrays.asList("City1", "City2"));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class WeatherControllerTest {
 
     @Test
     public void testGetCities() {
-        List<String> result = weatherController.getCities("Country1");
+        List<String> result = weatherController.citiesPerCountry("Country1");
         assertEquals(Arrays.asList("City1", "City2"), result);
     }
 }
