@@ -32,28 +32,13 @@ public class WeatherController {
         return countries;
     }
 
-    //Create a new route that exposes the cities of a country
-    @GetMapping("/countries/{country}")
-    public List<String> citiesPerCountry(@PathVariable String country) {
-        final String countryCapitalized = country.substring(0, 1).toUpperCase() + country.substring(1);
-        return countries.stream()
-                .filter(c -> c.name.equals(countryCapitalized))
-                .flatMap(c -> c.cities.stream())
-                .map(City::getName)
-                .toList();
-    }
-
     @GetMapping("/countries/{country}/{city}/{month}")
     public Weather monthlyAverage(@PathVariable String country, @PathVariable String city, @PathVariable String month) {
-        final String countryCapitalized = country.substring(0, 1).toUpperCase() + country.substring(1);
-        final String cityCapitalized = city.substring(0, 1).toUpperCase() + city.substring(1);
-        final String monthCapitalized = month.substring(0, 1).toUpperCase() + month.substring(1);
-
         return countries.stream()
-                .filter(c -> c.name.equals(countryCapitalized))
+                .filter(c -> c.name.equals(country))
                 .flatMap(c -> c.cities.stream())
-                .filter(ci -> ci.name.equals(cityCapitalized))
-                .map(ci -> ci.weather.get(monthCapitalized))
+                .filter(ci -> ci.name.equals(city))
+                .map(ci -> ci.weather.get(month))
                 .findFirst()
                 .orElse(null);
     }
