@@ -4,9 +4,9 @@ name: CI for the Weather project
 
 on:
   push:
-    branches: main
+    branches: solution
   pull_request:
-    branches: main
+    branches: solution
 
 jobs:
   test:
