@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class City {
@@ -12,7 +13,7 @@ public class City {
     }
 
     public String name;
-    public Map<String, Weather> weather;
+    public Map<String, Weather> weather = new HashMap<>();
 
     public String getName() {
         return name;
