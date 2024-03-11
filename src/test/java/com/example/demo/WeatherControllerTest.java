@@ -13,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.example.demo.model.*;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 class WebMockTest {
@@ -25,4 +27,5 @@ class WebMockTest {
         this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Paris")));
     }
+
 }
