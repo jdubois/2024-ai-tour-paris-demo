@@ -4,20 +4,21 @@
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
       "version": "21-oracle",
-      "jdkDistro": "oracle"
+      "jdkDistro": "oracle",
+      "installMaven": "true"
     },
-    "ghcr.io/devcontainers/features/azure-cli:1": {},
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
 
   "customizations": {
     "vscode": {
       "settings": {},
       "extensions": [
-        "redhat.vscode-xml",
-        "visualstudioexptteam.vscodeintellicode",
-        "vscjava.vscode-java-pack"
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-spring-boot-dashboard",
+        "vmware.vscode-spring-boot",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
       ]
     }
   },
