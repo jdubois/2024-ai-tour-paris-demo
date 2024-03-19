@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class WebMockTest {
+class WeatherControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
